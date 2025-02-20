@@ -1,13 +1,17 @@
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3"
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner"
+import dotenv from 'dotenv'; 
+dotenv.config();
+const ACCESS_KEY=process.env.AWS_ACCESS_KEY
+const SECRET_ACCESS_KEY=process.env.SECRET_AWS_ACCESS_KEY
 
 export async function GET() {
   // In a real scenario, these would be environment variables
   const s3Client = new S3Client({
     region: "us-east-1",
     credentials: {
-      accessKeyId: "YOUR_ACCESS_KEY_ID",
-      secretAccessKey: "YOUR_SECRET_ACCESS_KEY",
+      accessKeyId: `${ACCESS_KEY}`,
+      secretAccessKey: `${SECRET_ACCESS_KEY}`,
     },
   })
 
